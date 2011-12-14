@@ -1,0 +1,63 @@
+# Project: LightMeme
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = LightMeme_private.res
+OBJ  = main.o game.o tabuleiro.o celula.o robo.o funcao.o acao.o painel.o util.o botao.o fase.o $(RES)
+LINKOBJ  = main.o game.o tabuleiro.o celula.o robo.o funcao.o acao.o painel.o util.o botao.o fase.o $(RES)
+LIBS =  -mwindows -lalleg_s -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lole32 -ldinput -lddraw -ldxguid -lwinmm -ldsound  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = LightMeme.exe
+CXXFLAGS = $(CXXINCS) -DALLEGRO_STATICLINK  
+CFLAGS = $(INCS) -DALLEGRO_STATICLINK  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before LightMeme.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "LightMeme.exe" $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+game.o: game.c
+	$(CC) -c game.c -o game.o $(CFLAGS)
+
+tabuleiro.o: tabuleiro.c
+	$(CC) -c tabuleiro.c -o tabuleiro.o $(CFLAGS)
+
+celula.o: celula.c
+	$(CC) -c celula.c -o celula.o $(CFLAGS)
+
+robo.o: robo.c
+	$(CC) -c robo.c -o robo.o $(CFLAGS)
+
+funcao.o: funcao.c
+	$(CC) -c funcao.c -o funcao.o $(CFLAGS)
+
+acao.o: acao.c
+	$(CC) -c acao.c -o acao.o $(CFLAGS)
+
+painel.o: painel.c
+	$(CC) -c painel.c -o painel.o $(CFLAGS)
+
+util.o: util.c
+	$(CC) -c util.c -o util.o $(CFLAGS)
+
+botao.o: botao.c
+	$(CC) -c botao.c -o botao.o $(CFLAGS)
+
+fase.o: fase.c
+	$(CC) -c fase.c -o fase.o $(CFLAGS)
+
+LightMeme_private.res: LightMeme_private.rc 
+	$(WINDRES) -i LightMeme_private.rc --input-format=rc -o LightMeme_private.res -O coff 
